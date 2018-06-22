@@ -1,0 +1,29 @@
+##TWORZENIE VOLUME'U W DOCKERZE
+docker create volume baza_sv
+
+##DOSTANIE SIĘ DO DOCKERA (MYSQL) ORAZ STWORZENIE USERA, BAZY I TABELI
+#sprawdzenie nazwy
+docker ps
+
+#wejscie do dockera (mysql)
+docker exec -it nazwa_dockera_z_baza /bin/bash
+
+#polaczenie sie z baza w dockerze(tak brak spacji po -p  - to jest dobrze!)
+mysql -u root -ptajnehaslo
+
+#stworzenie usera oraz nadanie praw
+CREATE USER 'juzer'@'localhost' IDENTIFIED BY 'juzer1';
+CREATE USER 'juzer'@'%' IDENTIFIED BY 'juzer1';
+GRANT ALL PRIVILEGES ON *.* TO 'juzer'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'juzer'@'%' WITH GRANT OPTION;
+
+#stworzenie bazy
+CREATE DATABASE wyniki;
+use wyniki
+
+#stworzenie tabeli
+CREATE TABLE obj_walca(
+promien int,
+wysokosc int,
+wynik int
+);

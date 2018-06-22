@@ -1,0 +1,31 @@
+version: '3'
+services:
+  front:
+    image: frontend
+    ports:
+     - "80:80"
+  db:
+    image: mysql:5.7.22
+    environment:
+     - MYSQL_ROOT_PASSWORD=tajnehaslo
+    volumes:
+     - "baza_sv:/var/lib/mysql"
+  back:
+    image: backend
+    ports:
+     - "8181:8181"
+    expose:
+      - 8181
+    environment:
+     - DB_HOST=db
+     - DB_PORT=3306
+     - DB_USER=juzer
+     - DB_PASS=juzer1
+     - DB_DB=wyniki
+     - SV_PORT=8181
+    depends_on:
+     - db
+volumes:
+  baza_sv:
+
+#docker-compose -p docker up --build

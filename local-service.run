@@ -1,0 +1,19 @@
+echo "########################################CZYSZCZENIE"
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+echo "########################################KONIEC CZYSZCZENIA"
+
+echo "########################################BUDOWANIE"
+docker build -t backend /home/matmaj/Desktop/serwis-objetosc_walca/serivce-backend/
+echo "########################################BACK - FRONT"
+docker build -t frontend /home/matmaj/Desktop/serwis-objetosc_walca/service-frontend/
+echo "########################################KONIEC BUDOWANIA"
+
+#echo "########################################URUCHAMIANIE"
+#docker run -d -p 8181:8181 backend
+#echo "########################################BACK - FRONT"
+#docker run -d -p 80:80 frontend
+#echo "########################################KONIEC URUCHAMIANIA"
+
+echo "########################################DOCKER-COMPOSE"
+docker-compose up
