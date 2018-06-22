@@ -1,0 +1,2 @@
+# mc_dod
+DODATKOWY TO THE PROJECT
